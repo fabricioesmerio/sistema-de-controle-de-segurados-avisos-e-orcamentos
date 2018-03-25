@@ -1,0 +1,22 @@
+input:-webkit-autofill {
+    -webkit-box-shadow:0 0 0 50px red inset; /* aqui muda sua cor do fundo */
+    -webkit-text-fill-color: #ccc; /* Cor do texto */
+}
+
+.hide{
+    display: none;
+}
+
+@media print {
+  body * {
+    visibility: hidden;
+  }
+  #print, #print * {
+    visibility: visible;
+  }
+  #print {
+    position: fixed;
+    left: 0;
+    top: 0;
+  }
+}
