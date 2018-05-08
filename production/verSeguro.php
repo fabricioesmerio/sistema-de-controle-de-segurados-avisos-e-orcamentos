@@ -1,5 +1,4 @@
 <?php
-
 require_once '../Config/functions.php';
 require_once 'header.php';
 require_once 'sidebar.php';
@@ -12,8 +11,6 @@ require_once '../DAO/SeguroDAO.php';
 require_once '../class/Seguro.php';
 require_once '../DAO/EnderecoDAO.php';
 require_once '../class/Endereco.php';
-require_once '../DAO/EmpresaDAO.php';
-require_once '../class/Empresa.php';
 
 
 if (isset($_GET['s'])) {
@@ -35,10 +32,6 @@ if (isset($_GET['s'])) {
     $bemDAO = new BemDAO();
     $bem = $bemDAO->getById($seg->getBem());
 }
-
-$empr = new Empresa();
-$emprDAO = new EmpresaDAO();
-$empr = $emprDAO->getEmpresa();
 ?>
 <div class="right_col" role="main">
     <div class="">
@@ -50,7 +43,7 @@ $empr = $emprDAO->getEmpresa();
         </div>
         <div id="noprint">
             <div class="x_content">
-                
+                <a href="javascript:history.back()" class="btn btn-dark">Voltar</a>
                 <a href="index.php" class="btn btn-primary">Tela Inicial</a>
             </div>
         </div>
@@ -77,7 +70,7 @@ $empr = $emprDAO->getEmpresa();
                             <!-- ************************************-->
                             <section class="content invoice">
                                 <h1 class="text-center">Guerini Seguros</h1>
-                                
+                                <br />
                                 <!-- title row -->
                                 <div class="row">
                                     <div class="col-xs-12 invoice-header">
@@ -97,32 +90,32 @@ $empr = $emprDAO->getEmpresa();
                                             <br><?= $cli->getNome() ?> <br />
                                             <strong>CPF/CNPJ</strong>
                                             <br><?php
-                                            if ($cli->getCpf() == "")
-                                                echo $cli->getCnpj();
-                                            else
-                                                echo $cli->getCpf();
-                                            ?> <br />
+if ($cli->getCpf() == "")
+    echo $cli->getCnpj();
+else
+    echo $cli->getCpf();
+?> <br />
                                             <strong>Celular/Telefone</strong>
                                             <br><?php
                                             if ($cli->getCelular() == "")
                                                 echo $cli->getTelefone();
                                             else
                                                 echo $cli->getCelular();
-                                            ?> <br />
+?> <br />
                                             <strong>CEP Residência</strong>
                                             <br><?php
                                             if ($end->getCep() == NULL)
                                                 echo '';
                                             else
                                                 echo $end->getCep();
-                                            ?> <br />
+?> <br />
                                             <strong>Município Residência</strong>
                                             <br><?php
                                             if ($end->getCidade() == NULL)
                                                 echo '';
                                             else
                                                 echo $end->getCidade();
-                                            ?> <br />
+?> <br />
                                             <strong>Bônus</strong>
                                             <br><?= $seg->getClasse() ?> <br />
                                         </address>
@@ -148,60 +141,55 @@ $empr = $emprDAO->getEmpresa();
                                             <address>
                                                 <strong>Veículo(Marca e Modelo)</strong>
                                                 <br><?php
-                                                if ($bem->getMarca() != NULL && $bem->getModelo() !== NULL) {
-                                                    echo $bem->getMarca() . ' ' . $bem->getModelo();
-                                                } else {
-                                                    echo '';
-                                                }
-                                                ?> <br />
+                                if ($bem->getMarca() != NULL && $bem->getModelo() !== NULL) {
+                                    echo $bem->getMarca() . ' ' . $bem->getModelo();
+                                } else {
+                                    echo '';
+                                }
+                                    ?> <br />
                                                 <strong>Ano/Modelo</strong>
                                                 <br><?php
-                                                if ($bem->getAnoModelo() != NULL) {
-                                                    echo $bem->getAnoModelo();
-                                                } else {
-                                                    echo '';
-                                                }
-                                                ?><br />
+                                            if ($bem->getAnoModelo() != NULL) {
+                                                echo $bem->getAnoModelo();
+                                            } else {
+                                                echo '';
+                                            }
+                                    ?><br />
                                                 <strong>Zero KM</strong>
-                                                <br><?php
-                                                if ($bem->getZeroKm() != NULL) {
-                                                    echo 'sim';
-                                                } else {
-                                                    echo 'não';
-                                                }
-                                                ?><br />
+                                                <br><?= $bem->getZeroKm();
+                                            ?><br />
                                                 <strong>Combustível</strong>
                                                 <br><?php
-                                                if ($bem->getCombustivel() != NULL) {
-                                                    echo $bem->getCombustivel();
-                                                } else {
-                                                    echo '';
-                                                }
-                                                ?> <br />
+                                            if ($bem->getCombustivel() != NULL) {
+                                                echo $bem->getCombustivel();
+                                            } else {
+                                                echo '';
+                                            }
+                                    ?> <br />
                                                 <strong>Cód FIPE</strong>
                                                 <br><?php
-                                                if ($bem->getCodFipe() != NULL) {
-                                                    echo $bem->getCodFipe();
-                                                } else {
-                                                    echo '';
-                                                }
-                                                ?> <br />
+                                            if ($bem->getCodFipe() != NULL) {
+                                                echo $bem->getCodFipe();
+                                            } else {
+                                                echo '';
+                                            }
+                                    ?> <br />
                                                 <strong>Placa</strong>
                                                 <br><?php
-                                                if ($bem->getPlaca() != NULL) {
-                                                    echo $bem->getPlaca();
-                                                } else {
-                                                    echo '';
-                                                }
-                                                ?> <br />
+                                            if ($bem->getPlaca() != NULL) {
+                                                echo $bem->getPlaca();
+                                            } else {
+                                                echo '';
+                                            }
+                                    ?> <br />
                                                 <strong>Chassi</strong>
                                                 <br><?php
-                                                if ($bem->getChassi() != NULL) {
-                                                    echo $bem->getChassi();
-                                                } else {
-                                                    echo '';
-                                                }
-                                                ?> <br />
+                                            if ($bem->getChassi() != NULL) {
+                                                echo $bem->getChassi();
+                                            } else {
+                                                echo '';
+                                            }
+                                    ?> <br />
                                             </address>
                                         </div>
                                         <!-- /.col -->
@@ -210,36 +198,31 @@ $empr = $emprDAO->getEmpresa();
                                             <address>
                                                 <strong>Categoria</strong>
                                                 <br><?php
-                                                if ($bem->getCategoria() != NULL) {
-                                                    echo $bem->getCategoria();
-                                                } else {
-                                                    echo '';
-                                                }
-                                                ?> <br />
+                                            if ($bem->getCategoria() != NULL) {
+                                                echo $bem->getCategoria();
+                                            } else {
+                                                echo '';
+                                            }
+                                    ?> <br />
                                                 <strong>Uso</strong>
                                                 <br><?php
-                                                if ($bem->getUso() != NULL) {
-                                                    echo $bem->getUso();
-                                                } else {
-                                                    echo '';
-                                                }
-                                                ?> <br />
+                                            if ($bem->getUso() != NULL) {
+                                                echo $bem->getUso();
+                                            } else {
+                                                echo '';
+                                            }
+                                    ?> <br />
                                                 <strong>Transporte</strong>
                                                 <br><?php
-                                                if ($bem->getTransportes() != NULL) {
-                                                    echo $bem->getTransportes();
-                                                } else {
-                                                    echo '';
-                                                }
-                                                ?> <br />
+                                            if ($bem->getTransportes() != NULL) {
+                                                echo $bem->getTransportes();
+                                            } else {
+                                                echo '';
+                                            }
+                                    ?> <br />
                                                 <strong>Blindado</strong>
-                                                <br><?php
-                                                if ($bem->getBlindado() != NULL) {
-                                                    echo 'sim';
-                                                } else {
-                                                    echo 'não';
-                                                }
-                                                ?> <br />
+                                                <br><?= $bem->getBlindado();
+                                            ?> <br />
                                             </address>
                                         </div>
                                         <!-- /.col -->
@@ -251,20 +234,20 @@ $empr = $emprDAO->getEmpresa();
                                             } else {
                                                 echo '';
                                             }
-                                            ?> <br />
+                                    ?> <br />
                                             <strong>Município Pernoite</strong>
                                             <br><?php
-                                            if ($bem->getCidadePernoite() != NULL) {
-                                                echo $bem->getCidadePernoite();
-                                            } else {
-                                                echo '';
-                                            }
-                                            ?> <br />
+                                        if ($bem->getCidadePernoite() != NULL) {
+                                            echo $bem->getCidadePernoite();
+                                        } else {
+                                            echo '';
+                                        }
+                                    ?> <br />
                                         </div>
                                         <!-- /.col -->
                                     </div>
                                     <!-- /.row -->
-                                    <?php } else {
+                                <?php } else {
                                     ?>
                                     <div class="col-xs-12 invoice-header">
                                         <h3>
@@ -277,60 +260,60 @@ $empr = $emprDAO->getEmpresa();
                                             <address>
                                                 <strong>CEP</strong>
                                                 <br><?php
-                                                if ($end->getCep() != NULL) {
-                                                    echo $bem->getCepPernoite();
-                                                } else {
-                                                    echo '';
-                                                }
-                                                ?> <br />
+                                if ($end->getCep() != NULL) {
+                                    echo $bem->getCepPernoite();
+                                } else {
+                                    echo '';
+                                }
+                                    ?> <br />
                                                 <strong>Endereço</strong>
                                                 <br><?php
-                                                if ($end->getRua() != NULL) {
-                                                    echo $end->getRua() . ', nº ' . $end->getNumero();
-                                                } else {
-                                                    echo '';
-                                                }
-                                                ?> <br />
+                                            if ($end->getRua() != NULL) {
+                                                echo $end->getRua() . ', nº ' . $end->getNumero();
+                                            } else {
+                                                echo '';
+                                            }
+                                    ?> <br />
                                                 <strong>Complemento</strong>
                                                 <br><?php
-                                                if ($end->getComplemento() != NULL) {
-                                                    echo $end->getComplemento();
-                                                } else {
-                                                    echo '';
-                                                }
-                                                ?> <br />
+                                            if ($end->getComplemento() != NULL) {
+                                                echo $end->getComplemento();
+                                            } else {
+                                                echo '';
+                                            }
+                                    ?> <br />
                                                 <strong>Bairro</strong>
                                                 <br><?php
-                                                if ($end->getBairro() != NULL) {
-                                                    echo $end->getBairro();
-                                                } else {
-                                                    echo '';
-                                                }
-                                                ?> <br />
+                                            if ($end->getBairro() != NULL) {
+                                                echo $end->getBairro();
+                                            } else {
+                                                echo '';
+                                            }
+                                    ?> <br />
                                                 <strong>Cidade</strong>
                                                 <br><?php
-                                                if ($end->getCidade() != NULL) {
-                                                    echo $end->getCidade();
-                                                } else {
-                                                    echo '';
-                                                }
-                                                ?><br />
+                                            if ($end->getCidade() != NULL) {
+                                                echo $end->getCidade();
+                                            } else {
+                                                echo '';
+                                            }
+                                    ?><br />
                                                 <strong>Estado</strong>
                                                 <br><?php
-                                                if ($end->getEstado() != NULL) {
-                                                    echo $end->getEstado();
-                                                } else {
-                                                    echo '';
-                                                }
-                                                ?><br />
+                                            if ($end->getEstado() != NULL) {
+                                                echo $end->getEstado();
+                                            } else {
+                                                echo '';
+                                            }
+                                    ?><br />
                                                 <strong>Atividade Econômica</strong>
                                                 <br><?php
-                                                if ($bem->getAtividadeEco() != NULL) {
-                                                    echo $bem->getAtividadeEco();
-                                                } else {
-                                                    echo '';
-                                                }
-                                                ?> <br />
+                                            if ($bem->getAtividadeEco() != NULL) {
+                                                echo $bem->getAtividadeEco();
+                                            } else {
+                                                echo '';
+                                            }
+                                    ?> <br />
                                             </address>
                                         </div> 
                                     <?php }
@@ -347,15 +330,24 @@ $empr = $emprDAO->getEmpresa();
                                     <div class="row invoice-info">
                                         <div class="col-sm-4 invoice-col">
 
+                                            <?php
+                                            require_once '../DAO/EmpresaDAO.php';
+                                            require_once '../class/Empresa.php';
+                                            
+                                            $empresa = new Empresa();
+                                            $empresaDAO = new EmpresaDAO();
+                                            $empresa = $empresaDAO->getEmpresa();
+                                            
+                                            ?>
                                             <address>
-                                                <strong>Nome</strong>
-                                                <br><?=$empr->getNome()?> <br />
+                                                <strong>Empresa</strong>
+                                                <br><?= strtoupper($empresa->getNome())?> <br />
                                                 <strong>Endereço</strong>
-                                                <br><?=$empr->getRua() ?> <br />
+                                                <br><?= strtoupper($empresa->getRua()) .', '.$empresa->getNumero()?> <br />
                                                 <strong>Cidade</strong>
-                                                <br><?=$empr->getCidade() ?> <br />
-                                                <strong>Telefone</strong>
-                                                <br><?=$empr->getTelefone() ?> <br />
+                                                <br><?= strtoupper($empresa->getCidade())?> <br />
+                                                <strong>Estado</strong>
+                                                <br><?= strtoupper($empresa->getEstado())?> <br />
 
                                             </address>
                                         </div>
